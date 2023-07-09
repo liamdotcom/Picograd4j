@@ -7,6 +7,7 @@ import picograd4j.backprop.BackwardPropagation;
 import picograd4j.backprop.BackwardPropagationAdd;
 import picograd4j.backprop.BackwardPropagationMultiply;
 import picograd4j.backprop.BackwardPropagationPower;
+import picograd4j.backprop.BackwardPropagationRelu;
 
 public class Value {
     public float data;
@@ -79,5 +80,21 @@ public class Value {
         out.backprop = new BackwardPropagationPower(this, other, out);
 
         return out;
+    }
+
+    public Value relu(){
+        List<Value> children = new ArrayList<>();
+        children.add(this);
+
+        float outData = (this.data < 0) ? 0 : this.data;
+        Value out = new Value(outData, children, null);
+        out.backprop = new BackwardPropagationRelu(this, out);
+
+        return out;
+    }
+
+    @Override
+    public String toString() {
+        return "Value(data={"+ this.data +"}, grad={" +this.grad + "})";
     }
 }
