@@ -1,10 +1,14 @@
 package picograd4j;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import picograd4j.backprop.BackwardPropagation;
 import picograd4j.backprop.BackwardPropagationAdd;
+import picograd4j.backprop.BackwardPropagationDefault;
 import picograd4j.backprop.BackwardPropagationMultiply;
 import picograd4j.backprop.BackwardPropagationPower;
 import picograd4j.backprop.BackwardPropagationRelu;
@@ -13,11 +17,11 @@ public class Value {
     public float data;
     public float grad = 0;
     public List<Value> prev;
-    public BackwardPropagation backprop;
+    public BackwardPropagation backprop = new BackwardPropagationDefault();
 
     public Value(float data){
         this.data = data;
-        this.prev = null;
+        this.prev = Collections.emptyList();
     }
 
     public Value(float data, List<Value> children, BackwardPropagation backprop){
@@ -91,6 +95,26 @@ public class Value {
         out.backprop = new BackwardPropagationRelu(this, out);
 
         return out;
+    }
+
+    private void buildTopology(Set<Value> visited, List<Value> topologyList, Value value){
+        if(!visited.contains(value)){
+            visited.add(value);
+            for(Value child : value.prev){
+                buildTopology(visited, topologyList, child);
+            }
+            topologyList.add(value);
+        }
+    }
+
+    public void backward(){
+        List<Value> topologyList = new ArrayList<>();
+        buildTopology(new HashSet<Value>(), topologyList, this);
+        Collections.reverse(topologyList);
+        this.grad = 1;
+        for(Value v : topologyList) {
+            v.backprop.execute();
+        }
     }
 
     @Override
