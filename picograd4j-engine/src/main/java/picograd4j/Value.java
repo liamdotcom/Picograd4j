@@ -117,6 +117,34 @@ public class Value {
         }
     }
 
+    public Value negative(){
+        return new Value(-this.data);
+    }
+
+    public Value reverseAdd(Value other){
+        return other.add(this);
+    }
+
+    public Value subtract(Value other){
+        return this.add(other.negative());
+    }
+
+    public Value reverseSubtract(Value other){
+        return other.add(this.negative());
+    }
+
+    public Value reverseMultiply(Value other){
+        return other.multiply(this);
+    }
+
+    public Value trueDivide(Value other){
+        return this.multiply(other.power(-1));
+    }
+
+    public Value reverseTrueDivide(Value other){
+        return other.multiply(this.power(-1));
+    }
+
     @Override
     public String toString() {
         return "Value(data={"+ this.data +"}, grad={" +this.grad + "})";
