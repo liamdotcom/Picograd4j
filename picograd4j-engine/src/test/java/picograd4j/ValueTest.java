@@ -95,4 +95,32 @@ public class ValueTest {
             0.00001f
         );
     }
+
+    @Test
+    public void testReluPositive() {
+        float a = 2;
+
+        Value valueA = new Value(a);
+        Value valueB = valueA.relu(); 
+
+        Assert.assertEquals(
+            2,
+            valueB.data,
+            0.00001f
+        );
+    }
+
+    @Test
+    public void testReluNegative() {
+        float a = -2;
+
+        Value valueA = new Value(a);
+        Value valueB = valueA.relu(); 
+
+        Assert.assertEquals(
+            0,
+            valueB.data,
+            0.00001f
+        );
+    }
 }
