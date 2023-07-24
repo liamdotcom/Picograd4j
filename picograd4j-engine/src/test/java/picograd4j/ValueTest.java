@@ -1,6 +1,9 @@
 package picograd4j;
 
 import org.junit.Test;
+
+import picograd4j.engine.Value;
+
 import org.junit.Assert;
 
 public class ValueTest {
