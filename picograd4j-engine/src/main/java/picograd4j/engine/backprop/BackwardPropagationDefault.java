@@ -1,4 +1,4 @@
-package picograd4j.backprop;
+package picograd4j.engine.backprop;
 
 public class BackwardPropagationDefault implements BackwardPropagation{
     public BackwardPropagationDefault(){}

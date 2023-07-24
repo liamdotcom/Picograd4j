@@ -1,4 +1,4 @@
-package picograd4j;
+package picograd4j.engine;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import picograd4j.backprop.BackwardPropagation;
-import picograd4j.backprop.BackwardPropagationAdd;
-import picograd4j.backprop.BackwardPropagationDefault;
-import picograd4j.backprop.BackwardPropagationMultiply;
-import picograd4j.backprop.BackwardPropagationPower;
-import picograd4j.backprop.BackwardPropagationRelu;
+import picograd4j.engine.backprop.BackwardPropagation;
+import picograd4j.engine.backprop.BackwardPropagationAdd;
+import picograd4j.engine.backprop.BackwardPropagationDefault;
+import picograd4j.engine.backprop.BackwardPropagationMultiply;
+import picograd4j.engine.backprop.BackwardPropagationPower;
+import picograd4j.engine.backprop.BackwardPropagationRelu;
 
 public class Value {
     public float data;

@@ -1,6 +1,6 @@
-package picograd4j.backprop;
+package picograd4j.engine.backprop;
 
-import picograd4j.Value;
+import picograd4j.engine.Value;
 
 public class BackwardPropagationMultiply implements BackwardPropagation {
     private Value self;
