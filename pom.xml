@@ -24,5 +24,6 @@
 
 	<modules>
 		<module>picograd4j-engine</module>
+        <module>picograd4j-neural-network</module>
 	</modules>
 </project>
