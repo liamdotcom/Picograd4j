@@ -47,6 +47,7 @@ public class Neuron extends Module {
 
     @Override
     public String toString(){
-        return "{ReLu(" + this.w.size() + ")}";
+        String activation = nonlin ? "ReLU" : "Linear";
+        return String.format("%sNeuron(%d)", activation, w.size());
     }
 }
